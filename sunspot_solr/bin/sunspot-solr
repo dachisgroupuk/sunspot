@@ -57,6 +57,17 @@ opts = OptionParser.new do |opts|
   opts.on '--min-memory=MEMORY', 'Specify the initial size of the memory allocation pool' do |mm|
     server.min_memory = mm
   end
+
+  # Zookeeper flag and hosts
+  opts.on '--zookeepers=HOSTS', 'Specify the zookeeper hosts for this cluster' do |zk|
+    server.zookeeper_run = true
+    server.zookeeper_hosts = zk
+  end
+
+  # SolrCloud shards
+  opts.on '--shards=SHARDS', 'Specify the number of shards in this cluster' do |shards|
+    server.solr_shards = shards
+  end
 end
 
 opts.parse!

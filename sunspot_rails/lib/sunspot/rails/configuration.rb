@@ -276,6 +276,16 @@ module Sunspot #:nodoc:
         @disabled ||= (user_configuration_from_key('disabled') || false)
       end
 
+      # Solr Cloud number of shards
+      def shards
+        @shards ||= (user_configuration_from_key('solr', 'shards') || nil)
+      end
+
+      # Zookeeper config
+      def zookeepers
+        @zookeepers ||= (user_configuration_from_key('solr', 'zookeepers') || nil)
+      end
+
       private
       
       #

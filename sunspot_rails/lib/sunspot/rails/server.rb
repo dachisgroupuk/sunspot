@@ -80,6 +80,20 @@ module Sunspot
         configuration.max_memory
       end
 
+
+      # Zookeeper
+      def zookeeper_run
+        configuration.zookeepers && configuration.zookeepers.any? ? true : false
+      end
+
+      def zookeeper_hosts
+        configuration.zookeepers if configuration.zookeepers
+      end
+
+      # SolrCloud
+      def solr_shards
+        configuration.shards
+      end
       private
 
       #
