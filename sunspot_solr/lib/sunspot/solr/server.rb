@@ -19,7 +19,7 @@ module Sunspot
 
       LOG_LEVELS = Set['SEVERE', 'WARNING', 'INFO', 'CONFIG', 'FINE', 'FINER', 'FINEST']
 
-      attr_accessor :min_memory, :max_memory, :bind_address, :port, :log_file, :zookeeper_run, :zookeeper_hosts, :solr_shards
+      attr_accessor :min_memory, :max_memory, :bind_address, :port, :log_file, :zookeeper_run, :zookeeper_hosts, :solr_shards, :conf_dir, :collection
 
       attr_writer :pid_dir, :pid_file, :solr_data_dir, :solr_home, :solr_jar
 
@@ -102,8 +102,10 @@ module Sunspot
         # SolrCloud
         command << "-DnumShards=#{solr_shards}" if solr_shards
         # Zookeeper
-        command << "-DzkRun" if zookeeper_run
+        command << "-DzkRun=#{bind_address}:#{port.to_i + 1000}" if zookeeper_run
         command << "-DzkHost=#{zookeeper_hosts}" if zookeeper_hosts
+        command << "-Dbootstrap_confdir=#{conf_dir}" if conf_dir
+        command << "-Dcollection.configName=#{collection}" if collection
         command << '-jar' << File.basename(solr_jar)
         FileUtils.cd(File.dirname(solr_jar)) do
           exec(*command)

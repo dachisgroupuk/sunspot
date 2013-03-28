@@ -94,6 +94,14 @@ module Sunspot
       def solr_shards
         configuration.shards
       end
+
+      def conf_dir
+        configuration.conf_dir
+      end
+
+      def collection
+        configuration.collection
+      end
       private
 
       #

@@ -64,6 +64,14 @@ opts = OptionParser.new do |opts|
     server.zookeeper_hosts = zk
   end
 
+  opts.on '--conf-dir=CONF_DIR', 'Directory to configuration to be uploaded to Zookeeper' do |cd|
+    server.conf_dir = cd
+  end
+
+  opts.on '--collection=COLLECTION_NAME', 'The name of this collection in Zookeeper' do |coll|
+    server.collection = coll
+  end
+
   # SolrCloud shards
   opts.on '--shards=SHARDS', 'Specify the number of shards in this cluster' do |shards|
     server.solr_shards = shards

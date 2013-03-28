@@ -286,6 +286,14 @@ module Sunspot #:nodoc:
         @zookeepers ||= (user_configuration_from_key('solr', 'zookeepers') || nil)
       end
 
+      def conf_dir
+        @conf_dir ||= (user_configuration_from_key('solr', 'conf_dir') || nil)
+      end
+
+      def collection
+        @collection ||= (user_configuration_from_key('solr', 'collection') || nil)
+      end
+
       private
       
       #
