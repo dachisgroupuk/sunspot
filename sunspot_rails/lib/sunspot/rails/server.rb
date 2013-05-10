@@ -83,7 +83,11 @@ module Sunspot
 
       # Zookeeper
       def zookeeper_run
-        configuration.zookeepers && configuration.zookeepers.any? ? true : false
+        configuration.zookeepers && configuration.zookeepers.any? ? use_embedded_zookeeper : false
+      end
+
+      def use_embedded_zookeeper
+        !configuration.use_embedded_zookeeper.nil? ? configuration.use_embedded_zookeeper : false
       end
 
       def zookeeper_hosts
