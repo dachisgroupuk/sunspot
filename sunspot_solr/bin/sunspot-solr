@@ -60,8 +60,11 @@ opts = OptionParser.new do |opts|
 
   # Zookeeper flag and hosts
   opts.on '--zookeepers=HOSTS', 'Specify the zookeeper hosts for this cluster' do |zk|
-    server.zookeeper_run = true
     server.zookeeper_hosts = zk
+  end
+  
+  opts.on '--zookeeper-run=VALUE', 'Specify whether to run embedded zookeeper or not' do |zkr|
+    server.zookeeper_run = (zkr == 'true' ? true : false)
   end
 
   opts.on '--conf-dir=CONF_DIR', 'Directory to configuration to be uploaded to Zookeeper' do |cd|
