@@ -19,7 +19,8 @@ module Sunspot
 
       LOG_LEVELS = Set['SEVERE', 'WARNING', 'INFO', 'CONFIG', 'FINE', 'FINER', 'FINEST']
 
-      attr_accessor :min_memory, :max_memory, :bind_address, :port, :log_file, :zookeeper_run, :zookeeper_hosts, :solr_shards, :conf_dir, :collection
+      attr_accessor :min_memory, :max_memory, :bind_address, :port, :log_file, :zookeeper_run,
+                    :zookeeper_hosts, :solr_shards, :conf_dir, :collection, :dump_file
 
       attr_writer :pid_dir, :pid_file, :solr_data_dir, :solr_home, :solr_jar
 
@@ -69,7 +70,7 @@ module Sunspot
           pid = fork do
             Process.setsid
             STDIN.reopen('/dev/null')
-            STDOUT.reopen('/dev/null')
+            STDOUT.reopen(dump_file.present? ? dump_file : '/dev/null')
             STDERR.reopen(STDOUT)
             run
           end

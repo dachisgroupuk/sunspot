@@ -50,6 +50,10 @@ opts = OptionParser.new do |opts|
     server.log_file = File.expand_path(lf)
   end
 
+  opts.on '--dump-file=DUMP_FILE', 'Path to console output file' do |df|
+    server.dump_file = File.expand_path(df)
+  end
+
   opts.on '--max-memory=MEMORY', 'Specify the maximum size of the memory allocation pool' do |mm|
     server.max_memory = mm
   end

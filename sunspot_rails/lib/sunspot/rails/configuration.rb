@@ -205,6 +205,10 @@ module Sunspot #:nodoc:
         @log_file ||= (user_configuration_from_key('solr', 'log_file') || default_log_file_location )
       end
 
+      def dump_file
+        @dump_file ||= user_configuration_from_key('solr', 'dump_file')
+      end
+
       def data_path
         @data_path ||= user_configuration_from_key('solr', 'data_path') || File.join(::Rails.root, 'solr', 'data', ::Rails.env)
       end

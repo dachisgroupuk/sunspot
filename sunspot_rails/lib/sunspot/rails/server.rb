@@ -66,6 +66,10 @@ module Sunspot
         File.join(::Rails.root, 'log', "sunspot-solr-#{::Rails.env}.log")
       end
 
+      def dump_file
+        configuration.dump_file
+      end
+
       # 
       # Minimum Java heap size for Solr
       #
