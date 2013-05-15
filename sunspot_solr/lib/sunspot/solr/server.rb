@@ -70,7 +70,7 @@ module Sunspot
           pid = fork do
             Process.setsid
             STDIN.reopen('/dev/null')
-            STDOUT.reopen(dump_file.present? ? dump_file : '/dev/null')
+            STDOUT.reopen(!dump_file.nil? ? dump_file : '/dev/null')
             STDERR.reopen(STDOUT)
             run
           end
